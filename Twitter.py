@@ -295,8 +295,8 @@ if __name__ == "__main__":
 
     # train_data = dataset[:7000]
     # test_data = dataset[:7000]
-    train_data = dataset[:1200000]
-    test_data = dataset[1200000:]
+    train_data = dataset[:1000000]
+    test_data = dataset[1000000:]
     print("Training the data\n")
     classifier = NaiveBayesClassifier.train(train_data)
 
