@@ -1,2 +1,3 @@
 # CIS365-Sentiment-Analysis
-Final Project for the class
+Project #2
+Logan Jaglowski and Jessica Ricksgers
