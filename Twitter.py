@@ -4,7 +4,7 @@ from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
 from nltk import NaiveBayesClassifier
 from nltk import classify
-import tweepy, json
+import tweepy
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
@@ -21,6 +21,10 @@ def remove_noise(tweet_tokens, stop_words = ()):
     This function removes the noise from the tokens created.
     Also ensures that the tokens are classified correctly and are
     relevant towards the search terms
+
+    Inspiration for this taken from: https://www.digitalocean.com/community/tutorials/how-to-perform-sentiment-analysis-in-python-3-using-the-natural-language-toolkit-nltk
+    This site really helped us with the regex side of things, we did edit it to make the tokens more relevant
+
     :param tweet_tokens: Original tweet tokens sent into the function
     :param stop_words: Common english words that shouldn't be considered in evaluation
     :return: a cleaned list of tokens for future use
@@ -177,7 +181,10 @@ class myStreamListener(StreamListener):
         custom_tokens = remove_noise(word_tokenize(tweet))
 
         # Detect the satisfaction of the tweet and print it
+        # Inspiration for this classifier line (used several times in the program) from:
+        # https://www.digitalocean.com/community/tutorials/how-to-perform-sentiment-analysis-in-python-3-using-the-natural-language-toolkit-nltk
         currentTweetSatisfaction = classifier.classify(dict([token, True] for token in custom_tokens))
+
         print("THIS TWEET IS DETERMINED TO BE: " + currentTweetSatisfaction)
         author = api.get_author_tweets(status.user.screen_name)
 
@@ -192,6 +199,9 @@ class myStreamListener(StreamListener):
         # check author's 50 recent posts and record information
         for tweets in author:
             author_token = remove_noise(word_tokenize(tweets['text']))
+
+            # Inspiration for this classifier line (used several times in the program) from:
+            # https://www.digitalocean.com/community/tutorials/how-to-perform-sentiment-analysis-in-python-3-using-the-natural-language-toolkit-nltk
             if classifier.classify(dict([a_token, True] for a_token in author_token)) == "Positive":
                 positive_increment += 1
             else:
@@ -333,6 +343,8 @@ if __name__ == "__main__":
                 print("By: @" + newTweet['author'])
 
                 # Classify the tweet and increment the positive and negative counter
+                # Inspiration for this classifier line (used several times in the program) from:
+                # https://www.digitalocean.com/community/tutorials/how-to-perform-sentiment-analysis-in-python-3-using-the-natural-language-toolkit-nltk
                 currentTweetSatisfaction = classifier.classify(dict([token, True] for token in custom_tokens))
                 if currentTweetSatisfaction == "Positive":
                     positive_count += 1
@@ -350,6 +362,9 @@ if __name__ == "__main__":
                 # Look at author's most recent 50 tweets, then tokenize them and classify them as positive and negative
                 for tweet in author:
                     author_token = remove_noise(word_tokenize(tweet['text']))
+
+                    # Inspiration for this classifier line (used several times in the program) from:
+                    # https://www.digitalocean.com/community/tutorials/how-to-perform-sentiment-analysis-in-python-3-using-the-natural-language-toolkit-nltk
                     if classifier.classify(dict([a_token, True] for a_token in author_token)) == "Positive":
                         positive_increment += 1
                     else:
@@ -407,7 +422,11 @@ if __name__ == "__main__":
                 # proper variables based on if it's a positive or negative tweet
                 custom_tokens = remove_noise(word_tokenize(newTweet['text']))
                 print('TWEET #' + str(increment) + ': ')
+
+                # Inspiration for this classifier line (used several times in the program) from:
+                # https://www.digitalocean.com/community/tutorials/how-to-perform-sentiment-analysis-in-python-3-using-the-natural-language-toolkit-nltk
                 currentTweetSatisfaction = classifier.classify(dict([token, True] for token in custom_tokens))
+
                 print(newTweet['text'], '\nTHIS TWEET IS CLASSIFIED AS: ' + currentTweetSatisfaction + '\n')
                 if currentTweetSatisfaction == "Positive":
                     posi_increment += 1
