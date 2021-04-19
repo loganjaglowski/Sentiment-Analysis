@@ -11,7 +11,7 @@ from tweepy.streaming import StreamListener
 
 import re, string, random, nltk, operator
 
-# Download data sets from nltk
+# Download data sets from NLTK
 nltk.download('twitter_samples')
 nltk.download('stopwords')
 nltk.download('movie_reviews')
@@ -62,6 +62,10 @@ class TwitterClient(object):
     This Class is used to access tweet batches, rather than the streamed requests
     This class utilizes Twitter's API to connect to Twitter, as well as easily fetch
     and extract data from tweets
+
+    Original inspiration for this class and learning more about tweepy came from:
+    https://towardsdatascience.com/step-by-step-twitter-sentiment-analysis-in-python-d6f650ade58d
+
     """
     def __init__(self):
         """
