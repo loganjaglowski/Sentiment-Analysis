@@ -72,10 +72,10 @@ class TwitterClient(object):
         The init is necessary so we can use the proper credentials
         and connect to Twitter through Tweepy
         """
-        consumer_key = 'kHZAFhMkr63lwmosmhkXT5gyI'
-        consumer_secret = 'NHX3OGe1EDN1PXfwlY0dQEBCIIUQNYi3uJiFa7XZ5cMUSf8LJY'
-        access_token = '624014297-wmSPstrVSEEC0LQzJfs1elVknZbXmhgNEL6aOOs0'
-        access_token_secret = 'Ssrv95mgS1WnZ1Ae9U0rRw2u2gO3KbZ1S5Var9aNvtHCo'
+        #consumer_key = 'XXX'
+        #consumer_secret = 'XXX'
+        #access_token = 'XXX'
+        #access_token_secret = 'XXX'
         try:
             self.auth = OAuthHandler(consumer_key, consumer_secret)
             self.auth.set_access_token(access_token, access_token_secret)
@@ -152,10 +152,10 @@ class myStreamListener(StreamListener):
     After each tweet, sentiment statistics are shown about the tweet and the user.
     """
     # Unfortunately need to save this information to access Tweepy API in this class
-    consumer_key = 'kHZAFhMkr63lwmosmhkXT5gyI'
-    consumer_secret = 'NHX3OGe1EDN1PXfwlY0dQEBCIIUQNYi3uJiFa7XZ5cMUSf8LJY'
-    access_token = '624014297-wmSPstrVSEEC0LQzJfs1elVknZbXmhgNEL6aOOs0'
-    access_token_secret = 'Ssrv95mgS1WnZ1Ae9U0rRw2u2gO3KbZ1S5Var9aNvtHCo'
+    consumer_key = 'XXX'
+    consumer_secret = 'XXX'
+    access_token = 'XXX'
+    access_token_secret = 'XXX'
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
