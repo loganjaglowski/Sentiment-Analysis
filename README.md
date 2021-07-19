@@ -1,2 +1,2 @@
-# CIS365-Sentiment-Analysis
+# Sentiment-Analysis
 Logan Jaglowski and Jessica Ricksgers
